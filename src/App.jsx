@@ -51,6 +51,9 @@ export default function App() {
           <p className="text-xs text-ink/35 dark:text-ink-light/30 font-body text-center">
             تذكير — رفيقك اليومي للأذكار والأدعية والاستغفار
           </p>
+          <p className="text-xs text-ink/35 dark:text-ink-light/30 font-body text-center">
+            Developed by eng.kotaiba alali
+          </p>
         </div>
       </footer>
     </div>
