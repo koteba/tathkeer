@@ -91,6 +91,11 @@ function DhikrItem({ dhikr, done, onTap, onReset }) {
               {done}/{dhikr.count}
             </span>
           )}
+          {isComplete && (
+            <span className="text-[11px] text-ink/40 dark:text-ink-light/40 font-body whitespace-nowrap">
+              المتبقي 0
+            </span>
+          )}
         </div>
       </div>
     </button>
@@ -134,7 +139,7 @@ export default function DhikrList() {
 
   return (
     <div className="animate-fadeUp">
-      <div className="flex gap-2 mb-6 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex flex-wrap justify-center gap-2 mb-6">
         {CATEGORIES.map((c) => (
           <button
             key={c.id}
