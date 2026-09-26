@@ -8,9 +8,9 @@ import StatsChart from './StatsChart'
 import GeometricDivider from './GeometricDivider'
 
 export default function TasbeehCounter() {
-  const { count, increment, resetCurrent, todayTotal, weekTotal, last7Days } = useCounter()
   const [dhikrId, setDhikrId] = useLocalStorage('tathkeer:tasbeeh:dhikr', 'istighfar')
   const [goal, setGoal] = useLocalStorage('tathkeer:tasbeeh:goal', 33)
+  const { count, increment, resetCurrent, todayTotal, weekTotal, last7Days } = useCounter(dhikrId)
   const [customGoal, setCustomGoal] = useState('')
   const [justReached, setJustReached] = useState(false)
   const [tapPulse, setTapPulse] = useState(false)

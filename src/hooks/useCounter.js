@@ -7,15 +7,21 @@ function todayKey(date = new Date()) {
 
 /**
  * عداد تفاعلي (سبحة) يحفظ:
- * - القيمة الحالية لجلسة الذكر الحالي
+ * - قيمة مستقلة لكل ذكر
  * - سجل الإحصائيات اليومية الإجمالية (كل الأذكار مجتمعة) لآخر 14 يومًا
  */
-export function useCounter() {
-  const [count, setCount] = useLocalStorage('tathkeer:tasbeeh:current', 0)
+export function useCounter(dhikrId) {
+  const [counts, setCounts] = useLocalStorage('tathkeer:tasbeeh:counts', {})
+  const [legacyCount] = useLocalStorage('tathkeer:tasbeeh:current', 0)
   const [history, setHistory] = useLocalStorage('tathkeer:tasbeeh:history', {})
 
+  const count = counts[dhikrId] ?? (dhikrId === 'istighfar' ? legacyCount : 0)
+
   const increment = useCallback(() => {
-    setCount((c) => c + 1)
+    setCounts((currentCounts) => ({
+      ...currentCounts,
+      [dhikrId]: (currentCounts[dhikrId] || 0) + 1,
+    }))
     setHistory((h) => {
       const key = todayKey()
       const next = { ...h, [key]: (h[key] || 0) + 1 }
@@ -26,9 +32,11 @@ export function useCounter() {
       }
       return next
     })
-  }, [setCount, setHistory])
+  }, [dhikrId, setCounts, setHistory])
 
-  const resetCurrent = useCallback(() => setCount(0), [setCount])
+  const resetCurrent = useCallback(() => {
+    setCounts((currentCounts) => ({ ...currentCounts, [dhikrId]: 0 }))
+  }, [dhikrId, setCounts])
 
   const todayTotal = history[todayKey()] || 0
 
