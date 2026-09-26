@@ -51,8 +51,16 @@ export default function App() {
           <p className="text-xs text-ink/35 dark:text-ink-light/30 font-body text-center">
             تذكير — رفيقك اليومي للأذكار والأدعية والاستغفار
           </p>
-          <p className="text-xs text-ink/35 dark:text-ink-light/30 font-body text-center">
-            Developed by eng.kotaiba alali
+          <p className="text-sm font-semibold text-ink/60 dark:text-ink-light/55 font-body text-center">
+            Developed by eng.{' '}
+            <a
+              href="https://www.linkedin.com/in/kotaiba-alali/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-gold transition-colors"
+            >
+              kotaiba alali
+            </a>
           </p>
         </div>
       </footer>
